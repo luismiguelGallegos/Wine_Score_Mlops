@@ -25,6 +25,7 @@ data = pd.read_csv('winedata1.csv', sep=',', index_col=0)
 data_t_t=data[['description','points']]
 data_t_t=data_t_t.sample(frac=0.6,random_state=1).reset_index(drop=True)
 
+#process wine description 
 def process_text(raw_text):
     letters_only = re.sub("[^a-zA-Z]", " ",raw_text) 
     words = letters_only.lower().split()
@@ -57,7 +58,7 @@ NB_pipeline = Pipeline([
                 ('clf', OneVsRestClassifier(MultinomialNB(
                     fit_prior=True, class_prior=None))),
             ])
- # train the model using X_dtm & y
+ # train the model, there is more cleaning to do for a higher score
 NB_pipeline.fit(X_train, train.points)
     # compute the testing accuracy
 prediction = NB_pipeline.predict(X_test)
@@ -72,4 +73,4 @@ print(NB_pipeline.predict(wine2))
 wine=input("Tell me your wine description : ")
 wine2= [wine] 
 print(NB_pipeline.predict(wine2))
-#user input create a dinamic variable program stops 
+
