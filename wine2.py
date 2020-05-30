@@ -74,3 +74,4 @@ wine=input("Tell me your wine description : ")
 wine2= [wine] 
 print(NB_pipeline.predict(wine2))
 
+#try  different models for improving score
